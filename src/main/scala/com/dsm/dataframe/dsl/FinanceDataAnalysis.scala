@@ -1,6 +1,6 @@
 package com.dsm.dataframe.dsl
 
-import com.dsm.utils.Constants
+//import com.dsm.utils.Constants
 import com.typesafe.config.ConfigFactory
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
@@ -12,7 +12,7 @@ object FinanceDataAnalysis {
       .master("local[*]")
       .appName("Dataframe Example")
       .getOrCreate()
-    sparkSession.sparkContext.setLogLevel(Constants.ERROR)
+    //sparkSession.sparkContext.setLogLevel(Constants.ERROR)
     import sparkSession.implicits._
 
     val rootConfig = ConfigFactory.load("application.conf").getConfig("conf")
@@ -77,7 +77,7 @@ object FinanceDataAnalysis {
     employeeDfTemp2.show()
     val employeeDf = employeeDfTemp.select($"company", expr("employee.firstName as firstName"))
     employeeDf.select($"*",
-      when($"company" === "FamilyCo", "Premium")
+      when($"company4" === "FamilyCo", "Premium")
         .when($"company" === "OldCo", "Legacy")
         .otherwise("Standard").as("Tier"))
       .show(false)

@@ -15,14 +15,14 @@ object ScholashipRecipientJoinFilter {
     val sparkSession = SparkSession.builder.master("local[*]").appName("Dataframe Example").getOrCreate()
     sparkSession.sparkContext.setLogLevel("ERROR")
 
-    sparkSession.sparkContext.hadoopConfiguration.set("fs.s3n.awsAccessKeyId", "<ACCESS_KEY>")
-    sparkSession.sparkContext.hadoopConfiguration.set("fs.s3n.awsSecretAccessKey", "<SECRET_ACCESS_KEY>")
+    sparkSession.sparkContext.hadoopConfiguration.set("fs.s3n.awsAccessKeyId", "AKIAQSQU4YQMRUHTRP2R")
+    sparkSession.sparkContext.hadoopConfiguration.set("fs.s3n.awsSecretAccessKey", "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")
 
-    val demographicsRDD = sparkSession.sparkContext.textFile("s3n://<BUCKET_NAME>/demographic.csv")
-    val financesRDD = sparkSession.sparkContext.textFile("s3n://<BUCKET_NAME>/finances.csv")
-    val coursesRDD = sparkSession.sparkContext.textFile("s3n://<BUCKET_NAME>/course.csv")
+    val demographicsRDD = sparkSession.sparkContext.textFile("s3n://kvvreddy-bucket/demographic.csv")
+    val financesRDD = sparkSession.sparkContext.textFile("s3n://kvvreddy-bucket/finances.csv")
+    val coursesRDD = sparkSession.sparkContext.textFile("s3n://kvvreddy-bucket/course.csv")
 
-//    println("# of records = " + demographicsRDD.count())
+    //    println("# of records = " + demographicsRDD.count())
 
     val demographicsPairedRdd = demographicsRDD.map(record => record.split(","))
       .map(record =>
@@ -35,9 +35,9 @@ object ScholashipRecipientJoinFilter {
           record(6).toBoolean,
           record(7).toInt
         )
-      ).map(demographic => (demographic.id, demographic))      //Pair RDD, (id, demographics)
+      ).map(demographic => (demographic.id, demographic)) //Pair RDD, (id, demographics)
 
-    val financesPairedRdd = financesRDD.map(record => record.split(","))
+     val financesPairedRdd = financesRDD.map(record => record.split(","))
       .map(record => Finance(
         record(0).toInt,
         record(1).toBoolean,

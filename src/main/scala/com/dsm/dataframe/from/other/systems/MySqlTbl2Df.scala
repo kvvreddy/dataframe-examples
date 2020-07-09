@@ -36,9 +36,9 @@ object MySqlTbl2Df {
 
   // Creating Redshift JDBC URL
   def getMysqlJdbcUrl(mysqlConfig: Config): String = {
-    val host = mysqlConfig.getString("hostname")
-    val port = mysqlConfig.getString("port")
-    val database = mysqlConfig.getString("database")
+    val host = mysqlConfig.getString("testdb.cwkvjtopbtkc.eu-west-1.rds.amazonaws.com")
+    val port = mysqlConfig.getString("3306")
+    val database = mysqlConfig.getString("testdb")
     s"jdbc:mysql://$host:$port/$database?autoReconnect=true&useSSL=false"
   }
 

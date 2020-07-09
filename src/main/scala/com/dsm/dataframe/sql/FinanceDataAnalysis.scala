@@ -35,7 +35,7 @@ object FinanceDataAnalysis {
     val aggFinanceDf = sparkSession.sql("""
       select
         AccountNumber,
-        sum(Amount) as TotalTransaction,
+        sum(Amount2) as TotalTransaction,
         count(Amount) as NumberOfTransaction,
         max(Amount) as MaxTransaction,
         min(Amount) as MinTransaction,

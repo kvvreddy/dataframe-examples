@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import com.dsm.utils.Constants
 import org.apache.spark.sql.SparkSession
 
-object Rdd2DfThruSchemaAutoInfer {
+object  Rdd2DfThruSchemaAutoInfer {
   def main(args: Array[String]): Unit = {
     val sparkSession = SparkSession.builder.master("local[*]").appName("RDD to Dataframe through auto schema inference").getOrCreate()
     sparkSession.sparkContext.setLogLevel(Constants.ERROR)

@@ -32,7 +32,7 @@ object TextFile2Df {
 
     println("Creating dataframe from CSV file using 'SparkSession.read.csv()',")
     val financeDf = sparkSession.read
-      .option("mode", "DROPMALFORMED")
+      .option("mode", "DROPMALFORMED") // PERMISSIVE OR FAILFAST
       .option("header", "false")
       .option("delimiter", ",")
       .option("inferSchema", "true")
